@@ -11,7 +11,7 @@ public class SomeBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
         System.out.println("SomeBeanFactoryPostProcessor ...");
     }
 
-    public void setFoo(Foo foo){
-        //System.out.println(foo.getId());
-    }
+//    public void setFoo(Foo foo){
+//        //System.out.println(foo.getId());
+//    }
 }

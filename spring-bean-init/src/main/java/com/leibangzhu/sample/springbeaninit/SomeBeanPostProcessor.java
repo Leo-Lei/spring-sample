@@ -10,13 +10,13 @@ public class SomeBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("SomeBeanPostProcessor.postProcessBeforeInitialization ...");
+        System.out.println("SomeBeanPostProcessor.postProcessBeforeInitialization ..." + beanName);
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("SomeBeanPostProcessor.postProcessAfterInitialization ...");
+        System.out.println("SomeBeanPostProcessor.postProcessAfterInitialization ..." + beanName);
         return bean;
     }
 }

@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 public class AppConfiguration {
 
-    @Autowired
-    private Foo foo;
+//    @Autowired
+//    private Foo foo;
 
     @Bean
     public AlwaysBeingUsedBean alwaysBeingUsedBean() {
@@ -21,7 +21,7 @@ public class AppConfiguration {
     @Bean
     @Lazy
     public RarelyUsedBean rarelyUsedBean() {
-        Foo foo2 = foo;   // 这里foo也是null
+        Foo foo2 = new Foo();   // 这里foo也是null
         return new RarelyUsedBean();
     }
 
@@ -30,15 +30,7 @@ public class AppConfiguration {
     @Bean(name = "someBeanFactoryPostProcessor1")
     public SomeBeanFactoryPostProcessor someBeanFactoryPostProcessor1(){
         SomeBeanFactoryPostProcessor bean = new SomeBeanFactoryPostProcessor();
-        bean.setFoo(foo);
-        return bean;
-    }
-
-    // 通过参数的方式获取Foo,这里的Foo foo是有值的
-    @Bean(name = "someBeanFactoryPostProcessor2")
-    public SomeBeanFactoryPostProcessor someBeanFactoryPostProcessor2(Foo foo){
-        SomeBeanFactoryPostProcessor bean = new SomeBeanFactoryPostProcessor();
-        bean.setFoo(foo);
+//        bean.setFoo(foo);
         return bean;
     }
 }
