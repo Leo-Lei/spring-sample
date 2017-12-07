@@ -18,11 +18,15 @@ public class CustomizeScanTest {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
         annotationConfigApplicationContext.register(CustomizeScanTest.class);
         annotationConfigApplicationContext.refresh();
-        ScanClass1 injectClass = annotationConfigApplicationContext.getBean(ScanClass1.class);
-        injectClass.print();
 
-        ScanClass2 scanClass2 = annotationConfigApplicationContext.getBean(ScanClass2.class);
-        scanClass2.sayHello("leo");
+//        ScanClass1 injectClass = annotationConfigApplicationContext.getBean(ScanClass1.class);
+//        injectClass.print();
+
+//        ScanClass2 scanClass2 = annotationConfigApplicationContext.getBean(ScanClass2.class);
+//        scanClass2.sayHello("leo");
+
+        Foo foo = annotationConfigApplicationContext.getBean(Foo.class);
+        foo.run();
     }
 
     public static class InterfaceProxy implements InvocationHandler {

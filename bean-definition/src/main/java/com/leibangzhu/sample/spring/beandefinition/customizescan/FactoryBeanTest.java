@@ -27,6 +27,9 @@ public class FactoryBeanTest<T> implements InitializingBean, FactoryBean<T> {
     }
 
     public Class<?> getObjectType() {
+        if (null == innerClassName){
+            return null;
+        }
         try {
             return Class.forName(innerClassName);
         } catch (ClassNotFoundException e) {
