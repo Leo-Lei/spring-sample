@@ -1,12 +1,17 @@
 package com.leibangzhu.sample.springbeaninit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
+@ComponentScan
 @Configuration
 public class AppConfiguration {
 
+    @Autowired
+    private Foo foo;
 
     @Bean
     public AlwaysBeingUsedBean alwaysBeingUsedBean() {
@@ -16,6 +21,24 @@ public class AppConfiguration {
     @Bean
     @Lazy
     public RarelyUsedBean rarelyUsedBean() {
+        Foo foo2 = foo;   // 这里foo也是null
         return new RarelyUsedBean();
+    }
+
+    // 在实例化SomeBeanFactoryPostProcessor的时候，spring还没有初始化好Foo
+    // @Autowired的Foo foo是null
+    @Bean(name = "someBeanFactoryPostProcessor1")
+    public SomeBeanFactoryPostProcessor someBeanFactoryPostProcessor1(){
+        SomeBeanFactoryPostProcessor bean = new SomeBeanFactoryPostProcessor();
+        bean.setFoo(foo);
+        return bean;
+    }
+
+    // 通过参数的方式获取Foo,这里的Foo foo是有值的
+    @Bean(name = "someBeanFactoryPostProcessor2")
+    public SomeBeanFactoryPostProcessor someBeanFactoryPostProcessor2(Foo foo){
+        SomeBeanFactoryPostProcessor bean = new SomeBeanFactoryPostProcessor();
+        bean.setFoo(foo);
+        return bean;
     }
 }
