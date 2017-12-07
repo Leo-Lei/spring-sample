@@ -27,6 +27,9 @@ public class CustomizeScanTest {
 
         Foo foo = annotationConfigApplicationContext.getBean(Foo.class);
         foo.run();
+
+        Bar bar = annotationConfigApplicationContext.getBean(Bar.class);
+        bar.run("leo");
     }
 
     public static class InterfaceProxy implements InvocationHandler {
