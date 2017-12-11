@@ -1,7 +1,19 @@
 package com.leibangzhu.sample.springbeaninit;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Foo {
-    private String id;
+    private String id = "foo";
+
+    @Autowired
+    private IBar bar;
+
+    public Foo(){
+        System.out.println("foo construct...");
+
+    }
 
     public String getId() {
         return id;
@@ -9,5 +21,17 @@ public class Foo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public IBar getBar() {
+        return bar;
+    }
+
+    public void setBar(IBar bar) {
+        this.bar = bar;
+    }
+
+    public void sayHello(){
+        bar.sayHello();
     }
 }

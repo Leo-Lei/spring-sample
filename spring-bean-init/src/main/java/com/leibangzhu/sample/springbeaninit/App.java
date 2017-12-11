@@ -11,8 +11,11 @@ public class App {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(AppConfiguration.class);
         System.out.println("Spring container started and is ready");
-        RarelyUsedBean bean = context.getBean(RarelyUsedBean.class);
-        bean.doSomething();
+//        RarelyUsedBean bean = context.getBean(RarelyUsedBean.class);
+//        bean.doSomething();
+
+        Foo foo = context.getBean(Foo.class);
+        foo.sayHello();
 
         Thread.sleep(5000);
     }

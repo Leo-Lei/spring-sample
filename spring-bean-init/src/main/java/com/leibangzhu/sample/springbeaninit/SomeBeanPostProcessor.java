@@ -11,6 +11,11 @@ public class SomeBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("SomeBeanPostProcessor.postProcessBeforeInitialization ..." + beanName);
+        if ((bean instanceof Foo)){
+            Foo foo = (Foo)bean;
+            foo.setBar(new Bar2());
+            return foo;
+        }
         return bean;
     }
 
